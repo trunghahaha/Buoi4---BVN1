@@ -175,6 +175,9 @@ Car *myCar;
     if(myCar.gas < 0) {
         myCar.gas = 0;
         //[self stop];
+        if([self.timer isValid]){
+            [self.timer invalidate];
+        }
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(stop) userInfo:nil repeats:YES];
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"My car is out of gas!!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
@@ -187,6 +190,9 @@ Car *myCar;
 - (IBAction)goTap:(id)sender {
     if(myCar.v == 0){
         if(myCar.gas > 0){
+            if([self.timer isValid]){
+                [self.timer invalidate];
+            }
             myCar.v = 0;
             myCar.g = 5;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(speedUp) userInfo:nil repeats:YES];
@@ -206,6 +212,10 @@ Car *myCar;
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You reach max speed!!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [alert show];
         }else if(myCar.v !=0){
+            // giai phong bo dem thoi gian cu
+            if([self.timer isValid]){
+                [self.timer invalidate];
+            }
             myCar.g = 5;
             /// NSTimer de dem thoi gian, tao delay...
             self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(speedUp) userInfo:nil repeats:YES];
@@ -220,6 +230,9 @@ Car *myCar;
 }
 - (IBAction)stopTap:(id)sender {
     if(myCar.v != 0){
+        if([self.timer isValid]){
+            [self.timer invalidate];
+        }
         myCar.g = 0;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(stop) userInfo:nil repeats:YES];
     }else{
@@ -230,6 +243,9 @@ Car *myCar;
 
 - (IBAction)slowDownTap:(id)sender {
     if(myCar.v != 0){
+        if([self.timer isValid]){
+            [self.timer invalidate];
+        }
         myCar.g = 0;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(slowDown) userInfo:nil repeats:YES];
     }else{

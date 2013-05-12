@@ -12,6 +12,8 @@
 }
 @property (nonatomic, assign)int speedUpTimeCount;
 @property (nonatomic, strong) NSTimer *timer;
+//@property (nonatomic, strong) NSTimer *slowDownTimer;
+//@property (nonatomic, strong) NSTimer *stopTimer;
 // bien rieng dem thoi gian xe chay
 @property (nonatomic, strong) NSTimer *runningTimer;
 @property (weak, nonatomic) IBOutlet UIImageView *carImgView;
